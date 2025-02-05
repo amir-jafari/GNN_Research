@@ -35,13 +35,15 @@
 %\usetheme{Madrid}
 %\usetheme{Szeged}
 %**********************************************************************************************************************************************
- \AtBeginSection[]
-{
-  \begin{frame}
-    \frametitle{Table of Contents}
-    \tableofcontents[currentsection]
-  \end{frame}
-}
+
+ %\AtBeginSection[]
+%{
+%  \begin{frame}
+%    \frametitle{Table of Contents}
+%    \tableofcontents[currentsection]
+%  \end{frame}
+%}
+
 %**********************************************************************************************************************************************
 %Information to be included in the title page:
 \title[] %optional
@@ -126,7 +128,7 @@
         Nodes aggregate information from neighbors.
     \end{block}
 
-    \begin{block}{Node Embeddings}
+    \begin{block}{Node Embeddings:}
         Transform features into a low-dimensional vector space.
     \end{block}
 
@@ -135,7 +137,98 @@
     \end{block}
     
 \end{frame}
+%------------------------------------------------
+\begin{frame}{Message Passing}
+    \textbf{Key Idea:}
+    \begin{itemize}
+        \item Nodes aggregate information from their neighbors.
+        \item Enables nodes to learn representations based on local graph structure.
+    \end{itemize}
+    
+    \vspace{0.5cm}
+    
+    \textbf{Process:}
+    \begin{itemize}
+        \item Each node receives messages (feature vectors) from its neighbors.
+        \item Messages are combined using a differentiable function (e.g., sum, mean, max).
+        \item The aggregated message is used to update the node's state.
+    \end{itemize}
+    
+ %   \vspace{0.5cm}
+ \end{frame} 
+ 
+ \begin{frame}{Message Passing}
+    \textbf{Mathematical Formulation:}
+    \[
+    h_v^{(l+1)} = \text{UPDATE}\left(h_v^{(l)}, \text{AGGREGATE}\left(\{h_u^{(l)} \mid u \in \mathcal{N}(v)\}\right)\right)
+    \]
+    Where:
+    \begin{itemize}
+        \item \( h_v^{(l)} \): Embedding of node \( v \) at layer 
+        \item \( \mathcal{N}(v) \): Neighbors of node \( v \).
+    \end{itemize}
+\end{frame}
 
+%------------------------------------------------
+\begin{frame}{Node Embeddings}
+    \textbf{Key Idea:}
+    \begin{itemize}
+        \item Transform node features into a low-dimensional vector space.
+        \item Captures structural and feature-based information.
+    \end{itemize}
+    
+    \vspace{0.5cm}
+    
+    \textbf{Process:}
+    \begin{itemize}
+        \item Each node starts with an initial feature vector.
+        \item Through message passing, embeddings are refined over multiple layers.
+        \item Final embeddings encode both local and global graph context.
+    \end{itemize}
+\end{frame}
+    
+%    \vspace{0.5cm}
+    
+\begin{frame}{Node Embeddings}    
+    \textbf{Mathematical Formulation:}
+    \[
+    h_v^{(l)} = \sigma\left(W^{(l)} \cdot \text{AGGREGATE}\left(\{h_u^{(l-1)} \mid u \in \mathcal{N}(v)\}\right)\right)
+    \]
+    Where:
+    \begin{itemize}
+        \item \( W^{(l)} \): Learnable weight matrix at layer \( l \).
+        \item \( \sigma \): Non-linear activation function (e.g., ReLU).
+    \end{itemize}
+\end{frame}
+
+%------------------------------------------------
+\begin{frame}{Graph Aggregation}
+    \textbf{Key Idea:}
+    \begin{itemize}
+        \item Pool node embeddings to form a graph-level representation.
+        \item Enables tasks like graph classification or regression.
+    \end{itemize}
+    
+    \textbf{Process:}
+    \begin{itemize}
+        \item Combine embeddings of all nodes in the graph.
+        \item Common pooling methods: sum, mean, max, or attention-based.
+        \item The resulting vector represents the entire graph.
+    \end{itemize}
+\end{frame}   
+
+\begin{frame}{Graph Aggregation}    
+    \textbf{Mathematical Formulation:}
+    \[
+    h_G = \text{POOL}\left(\{h_v^{(L)} \mid v \in V\}\right)
+    \]
+    Where:
+    \begin{itemize}
+        \item \( h_G \): Graph-level embedding.
+        \item \( h_v^{(L)} \): Final embedding of node \( v \) at layer \( L \).
+        \item \( V \): Set of all nodes in the graph.
+    \end{itemize}
+\end{frame}
 %------------------------------------------------
 \begin{frame}{Why Use GNNs?}
     \begin{itemize}
@@ -159,8 +252,9 @@
     \end{itemize}
 \end{frame}
 
-\section{Key Concepts of GNNs}
 
+%------------------------------------------------
+\section{Key Concepts of GNNs}
 %------------------------------------------------
 \begin{frame}{Architecture Overview}
     \begin{itemize}
@@ -176,24 +270,68 @@
 \end{frame}
 
 %------------------------------------------------
-\begin{frame}{GNN Workflow}
-    \begin{enumerate}
-        \item Initialize node features (e.g., feature vectors).
-        \item Perform message passing for multiple layers.
-        \item Aggregate and update node embeddings.
-        \item Apply task-specific layers (e.g., classification or regression).
-    \end{enumerate}
-\end{frame}
+%\begin{frame}{GNN Workflow}
+%  \begin{enumerate}
+%        \item Initialize node features (e.g., feature vectors).
+%        \item Perform message passing for multiple layers.
+%        \item Aggregate and update node embeddings.
+%        \item Apply task-specific layers (e.g., classification or regression).
+%    \end{enumerate}
+%\end{frame}
 
 %------------------------------------------------
 \section{Applications of GNNs}
 %------------------------------------------------
 \begin{frame}{Applications of GNNs}
+    Graph Neural Networks (GNNs) are used in various structured data problems. These tasks are categorized into:
     \begin{itemize}
-        \item \textbf{Social Networks:} Friend recommendation, community detection.
-        \item \textbf{Knowledge Graphs:} Entity linking, relation prediction.
-        \item \textbf{Drug Discovery:} Molecular property prediction.
-        \item \textbf{Transportation:} Traffic forecasting, route optimization.
+        \item Node-Level Tasks
+        \item Edge-Level Tasks
+        \item Graph-Level Tasks
+        \item Dynamic and Spatio-Temporal Graph Tasks
+        \item Other Applications
+    \end{itemize}
+\end{frame}
+
+%------------------------------------------------
+\begin{frame}{Node-Level Tasks}
+    \begin{itemize}
+        \item \textbf{Node Classification}: Predicting categories of nodes (e.g., detecting fake accounts in social networks).
+        \item \textbf{Node Clustering / Community Detection}: Identifying closely connected groups (e.g., social media groups).
+        \item \textbf{Anomaly Detection}: Detecting unusual nodes (e.g., fraud detection in financial transactions).
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{Edge-Level Tasks}
+    \begin{itemize}
+        \item \textbf{Link Prediction}: Predicting missing or future connections (e.g., friend recommendations on Facebook).
+        \item \textbf{Edge Classification}: Classifying relationships between nodes (e.g., type of citation between research papers).
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{Graph-Level Tasks}
+    \begin{itemize}
+        \item \textbf{Graph Classification}: Predicting the category of an entire graph (e.g., drug discovery by classifying molecular structures).
+        \item \textbf{Graph Similarity / Matching}: Comparing graphs (e.g., plagiarism detection in research papers).
+        \item \textbf{Graph Regression}: Predicting numerical properties of a graph (e.g., estimating molecular solubility).
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{Dynamic and Spatio-Temporal Graph Tasks}
+    \begin{itemize}
+        \item \textbf{Dynamic Graph Learning}: Learning from evolving graphs (e.g., predicting social network interactions over time).
+        \item \textbf{Spatio-Temporal Forecasting}: Using spatial and temporal dependencies (e.g., traffic prediction in road networks).
+    \end{itemize}
+\end{frame}
+
+
+\begin{frame}{Other Applications}
+    \begin{itemize}
+        \item \textbf{Recommendation Systems}: Using graph-based collaborative filtering (e.g., movie recommendations on Netflix).
+        \item \textbf{Knowledge Graph Completion}: Predicting missing relations in knowledge graphs (e.g., completing facts in Wikidata).
+        \item \textbf{Computer Vision with GNNs}: Using scene graphs for object detection.
+        \item \textbf{NLP with Graphs}: Enhancing text representation (e.g., citation graphs for text classification).
+        \item \textbf{Robotics and Control Systems}: Path planning and robot perception using scene graphs.
     \end{itemize}
 \end{frame}
 
@@ -228,13 +366,6 @@
         \item Ongoing research addresses scalability and optimization challenges.
     \end{itemize}
 \end{frame}
-%------------------------------------------------
-
-
-%------------------------------------------------
-
-%------------------------------------------------
-
 %------------------------------------------------
 
 
