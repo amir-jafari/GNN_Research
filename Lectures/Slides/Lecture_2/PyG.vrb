@@ -1,0 +1,15 @@
+\frametitle{Creating a Graph}
+\begin{block}{Example Code}
+        \begin{lstlisting}[language=Python]
+from torch_geometric.data import Data
+import torch
+
+edge_index = torch.tensor([[0, 1, 1, 2],
+			  [1, 0, 2, 1]],
+			  dtype=torch.long)
+x = torch.tensor([[1], [2], [3]],
+		dtype=torch.float)
+data = Data(x=x, edge_index=edge_index)
+print(data)
+        \end{lstlisting}
+    \end{block}

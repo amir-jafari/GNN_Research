@@ -1,4 +1,0 @@
-\beamer@sectionintoc {1}{Introduction to GNNs}{3}{0}{1}
-\beamer@sectionintoc {2}{Key Concepts of GNNs}{13}{0}{2}
-\beamer@sectionintoc {3}{Applications of GNNs}{14}{0}{3}
-\beamer@sectionintoc {4}{Summary}{21}{0}{4}
