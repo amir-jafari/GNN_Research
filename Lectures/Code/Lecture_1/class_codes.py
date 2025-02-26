@@ -4,7 +4,7 @@ import networkx as nx
 from torch_geometric.nn import GCNConv, global_mean_pool
 from torch_geometric.data import Data
 import matplotlib.pyplot as plt
-
+import pandas
 
 '''Sample graph data & Visualization'''
 edge_index = torch.tensor([[0, 1, 0],  # From nodes (A -> B, B -> C, A -> C)
