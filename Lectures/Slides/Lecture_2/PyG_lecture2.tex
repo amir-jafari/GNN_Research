@@ -1,0 +1,233 @@
+\documentclass{beamer}
+%\documentclass[17pt]{beamer}
+%**********************************************************************************************************************************************
+\usepackage{multicol, stmaryrd, amsfonts, graphicx, times, epsfig, amsmath, mathtools, subfigure, balance, array, siunitx, pgfgantt, xspace}
+\usepackage{multirow, epsf, amsmath, amssymb, indentfirst, verbatim, keyval, url, textcomp, enumerate, calc, makecell, subfigure, xcolor, listings}
+%**********************************************************************************************************************************************
+\usepackage[utf8]{inputenc}
+\usepackage[export]{adjustbox}
+\usepackage[absolute,overlay]{textpos}
+\usepackage{hyperref}
+\usepackage[normalem]{ulem}
+\usepackage{textpos}
+\usepackage{breakurl}
+%**********************************************************************************************************************************************
+\useunder{\uline}{\ulined}{}%
+\DeclareUrlCommand{\bulurl}{\def\UrlFont{\ttfamily\color{blue}\ulined}}
+\usefonttheme{serif}
+\usetheme{Pittsburgh}
+\usecolortheme{beaver}
+\graphicspath{ {figs/} }
+\setbeamertemplate{itemize items}[ball]
+\hypersetup{
+   colorlinks   = true,                               %Colours links instead of ugly boxes
+   urlcolor     = blue,                               %Colour for external hyper links
+   linkcolor    = blue,                               %Colour of internal links
+   citecolor    = red,                                %Colour of citations
+   setpagesize  = false,
+   linktocpage  = true,
+}
+%**********************************************************************************************************************************************
+%\usepackage{stmaryrd, amsfonts, graphicx, times, epsfig, amsmath, mathtools,subfigure, balance, array,siunitx}
+%\usefonttheme{structuresmallcapsserif}
+%\usepackage{bookman}
+%\usetheme{Madrid}
+%\usetheme{Szeged}
+%**********************************************************************************************************************************************
+ \AtBeginSection[]
+{
+  \begin{frame}
+    \frametitle{Table of Contents}
+    \tableofcontents[currentsection]
+  \end{frame}
+}
+%**********************************************************************************************************************************************
+%Information to be included in the title page:
+\title[] %optional
+{Graph Neural Network \\Lecture 2}
+
+%**********************************************************************************************************************************************
+%\author[Arthur, Doe] % (optional, for multiple authors)
+%{A.~B.~Arthur\inst{1} \and J.~Doe\inst{2}}
+%
+%\institute[VFU] % (optional)
+%{
+%  \inst{1}%
+%  Faculty of Physics\\
+%  Very Famous University
+%  \and
+%  \inst{2}%
+%  Faculty of Chemistry\\
+%  Very Famous University
+%}
+%**********************************************************************************************************************************************
+\date[] % (optional)
+
+%\logo{\includegraphics[width=1in, height=0.3in]{GW_logo.eps}}
+\titlegraphic{\includegraphics[width=0.8in, height=0.8in]{figs/FrontCover_ImgID1_mod3.eps}}
+%>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+%>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+\setbeamertemplate{bibliography item}[text]
+
+\usepackage{setspace}
+\definecolor{Code}{rgb}{0,0,0}
+\definecolor{Decorators}{rgb}{0.5,0.5,0.5}
+\definecolor{Numbers}{rgb}{0.5,0,0}
+\definecolor{MatchingBrackets}{rgb}{0.25,0.5,0.5}
+\definecolor{Keywords}{rgb}{0,0,1}
+\definecolor{self}{rgb}{0,0,0}
+\definecolor{Strings}{rgb}{0,0.63,0}
+\definecolor{Comments}{rgb}{0,0.63,1}
+\definecolor{Backquotes}{rgb}{0,0,0}
+\definecolor{Classname}{rgb}{0,0,0}
+\definecolor{FunctionName}{rgb}{0,0,0}
+\definecolor{Operators}{rgb}{0,0,0}
+\definecolor{Background}{rgb}{0.98,0.98,0.98}
+\lstdefinelanguage{Python}{
+numbers=left,
+numberstyle=\footnotesize,
+numbersep=1em,
+xleftmargin=1em,
+framextopmargin=2em,
+framexbottommargin=2em,
+showspaces=false,
+showtabs=false,
+showstringspaces=false,
+frame=l,
+tabsize=4,
+% Basic
+basicstyle=\ttfamily\small\setstretch{1},
+backgroundcolor=\color{Background},
+% Comments
+commentstyle=\color{Comments}\slshape,
+% Strings
+stringstyle=\color{Strings},
+morecomment=[s][\color{Strings}]{"""}{"""},
+morecomment=[s][\color{Strings}]{'''}{'''},
+% keywords
+morekeywords={import,from,class,def,for,while,if,is,in,elif,else,not,and,or,print,break,continue,return,True,False,None,access,as,,del,except,exec,finally,global,import,lambda,pass,print,raise,try,assert},
+keywordstyle={\color{Keywords}\bfseries},
+% additional keywords
+morekeywords={[2]@invariant,pylab,numpy,np,scipy},
+keywordstyle={[2]\color{Decorators}\slshape},
+emph={self},
+emphstyle={\color{self}\slshape},
+%
+}
+%-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+%-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+%-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+\begin{document}
+\lstset{language=Python}
+\frame{\titlepage}
+
+%-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+\section{Introduction to PyG}
+%------------------------------------------------
+\begin{frame}{What is PyTorch Geometric?}
+    \begin{itemize}
+        \item \textbf{PyG} (\href{https://github.com/pyg-team/pytorch_geometric}{PyTorch Geometric}) is a library for deep learning on graphs built on PyTorch.
+        \item Provides tools for graph creation, transformations, and GNN layers.
+        \item Efficient handling of large-scale graphs.
+         \item Installation:
+         	\begin{itemize}
+			\item \texttt{pip install torch\_geometric}
+			\item  \texttt{conda install pyg \-c pyg}
+		\end{itemize}
+    \end{itemize}
+\end{frame}
+
+%------------------------------------------------
+\begin{frame}{Key Features}
+    \begin{itemize}
+        \item \textbf{Data Handling}: Easy-to-use data structures for graphs.
+        \item \textbf{Predefined Layers}: GCN, GAT, GraphSAGE, etc.
+        \item \textbf{Datasets}: Built-in datasets like Cora, Citeseer, and more.
+        \item \textbf{Extensibility}: Custom layers and datasets.
+    \end{itemize}
+\end{frame}
+
+
+%-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+\section{Basic Code Examples}
+%------------------------------------------------
+\begin{frame}
+\frametitle{Creating a simple graph}
+\lstinputlisting[firstline=1, lastline=12]{Python_Files/Lecture2_Code.py}
+\end{frame}
+
+%-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+\begin{frame}
+\frametitle{Accessing Graph Properties}
+\lstinputlisting[firstline=15, lastline=18]{Python_Files/Lecture2_Code.py}
+\end{frame}
+
+%-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+\begin{frame}
+\frametitle{Adding Edge Weights}
+\lstinputlisting[firstline=32, lastline=35]{Python_Files/Lecture2_Code.py}
+\end{frame}
+
+%-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+\begin{frame}
+\frametitle{Convert to Undirected Graph}
+\lstinputlisting[firstline=38, lastline=40]{Python_Files/Lecture2_Code.py}
+\end{frame}
+
+%-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+\begin{frame}
+\frametitle{Using Built-in Datasets}
+\lstinputlisting[firstline=21, lastline=29]{Python_Files/Lecture2_Code.py}
+\end{frame}
+
+
+%---------------------------------------------
+\section{Advanced Features}
+%---------------------------------------------
+
+\begin{frame}{Batching Graphs}
+    \begin{itemize}
+        \item PyG supports batching multiple graphs into a single graph object.
+        \item Useful for training on datasets with multiple small graphs.
+    \end{itemize}
+\lstinputlisting[firstline=43, lastline=49]{Python_Files/Lecture2_Code.py}
+\end{frame}
+
+%---------------------------------------------
+\begin{frame}{Graph Transformations}
+    \begin{itemize}
+        \item PyG provides utilities for graph transformations (e.g., normalization, augmentation).
+    \end{itemize}
+\lstinputlisting[firstline=52, lastline=57]{Python_Files/Lecture2_Code.py}
+\end{frame}
+
+%---------------------------------------------
+\begin{frame}
+\frametitle{Using a GCN Layer}
+\lstinputlisting[firstline=60, lastline=73]{Python_Files/Lecture2_Code.py}
+\end{frame}
+
+%---------------------------------------------
+\begin{frame}
+\frametitle{Defining a Custom GNN Layer}
+\lstinputlisting[firstline=76, lastline=83]{Python_Files/Lecture2_Code.py}
+\end{frame}
+
+%---------------------------------------------
+\begin{frame}
+\frametitle{Training a GNN Model}
+\lstinputlisting[firstline=86, lastline=95]{Python_Files/Lecture2_Code.py}
+\end{frame}
+
+\section{Conclusion}
+%---------------------------------------------
+\begin{frame}{Conclusion}
+    \begin{itemize}
+        \item PyTorch Geometric simplifies working with GNNs.
+        \item Supports various graph neural network architectures.
+        \item Efficient for large-scale graph data processing.
+    \end{itemize}
+\end{frame}
+\end{document} 
