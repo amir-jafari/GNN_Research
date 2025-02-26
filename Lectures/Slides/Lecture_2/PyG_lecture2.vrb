@@ -1,0 +1,2 @@
+\frametitle{Dictionaries Example}
+\lstinputlisting[basicstyle=\ttfamily\scriptsize,firstline=277, lastline=294]{Python_Files/Lecture2_Code.py}

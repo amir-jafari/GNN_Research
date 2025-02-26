@@ -1,0 +1,4 @@
+\beamer@sectionintoc {1}{Introduction to PyG}{2}{0}{1}
+\beamer@sectionintoc {2}{Basic Code Examples}{5}{0}{2}
+\beamer@sectionintoc {3}{Advanced Features}{11}{0}{3}
+\beamer@sectionintoc {4}{Conclusion}{17}{0}{4}
