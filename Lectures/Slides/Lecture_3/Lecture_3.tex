@@ -11,6 +11,7 @@
 \usepackage[normalem]{ulem}
 \usepackage{textpos}
 \usepackage{tcolorbox}
+\usepackage{listings}
 %**********************************************************************************************************************************************
 \useunder{\uline}{\ulined}{}%
 \DeclareUrlCommand{\bulurl}{\def\UrlFont{\ttfamily\color{blue}\ulined}}
@@ -47,7 +48,8 @@
 %**********************************************************************************************************************************************
 %Information to be included in the title page:
 \title[] %optional
-{Graph Neural Network \\Lecture 3}
+{Graph Neural Network \\Lecture 3
+}
 %\subtitle{Graph Neural Network \\Lecture}
 %**********************************************************************************************************************************************
 %\author[Arthur, Doe] % (optional, for multiple authors)
@@ -86,39 +88,52 @@
 
 %------------------------------------------------
 \section{Introduction to GCNs}
-%------------------------------------------------
 
-\begin{frame}{What is GCNs}
+%------------------------------------------------
+\begin{frame}{What is a Graph Convolutional Network (GCN)?}
     \begin{itemize}
-        \item Graph Convolutional Networks (GCNs) are a type of GNNs.
-        \item The most prevalent and broadly applied GNN model.
-        \item Can leverage both the features and locality of a node to make predictions.
-        \item Providing an effective way to handle graph-structured data.
-      
+        \item A type of Graph Neural Network (GNN) designed for graph-structured data.
+        \item Extends the concept of convolutional neural networks (CNNs) to graphs.
+        \item Captures local graph structure and node features.
     \end{itemize}
-    
+\end{frame}
+
+
+%------------------------------------------------
+\begin{frame}{Why GCNs?}
+    \begin{itemize}
+        \item \textbf{Graph-Structured Data}: Many real-world problems involve graphs (e.g., social networks, molecular structures).
+        \item \textbf{Node-Level Tasks}: Node classification, link prediction.
+        \item \textbf{Graph-Level Tasks}: Graph classification, clustering.
+    \end{itemize}
 \end{frame}
 
 %------------------------------------------------
-
-
+\section{Mathematical Formulation}
+\begin{frame}{GCN Layer}
+    The GCN layer is defined as:
+    \[
+    H^{(l+1)} = \sigma\left(\tilde{D}^{-\frac{1}{2}} \tilde{A} \tilde{D}^{-\frac{1}{2}} H^{(l)} W^{(l)}\right)
+    \]
+    \begin{itemize}
+        \item \(\tilde{A} = A + I\): Adjacency matrix with self-loops.
+        \item \(\tilde{D}\): Degree matrix of \(\tilde{A}\).
+        \item \(H^{(l)}\): Node features at layer \(l\).
+        \item \(W^{(l)}\): Learnable weight matrix.
+        \item \(\sigma\): Activation function (e.g., ReLU).
+    \end{itemize}
+\end{frame}
 
 %------------------------------------------------
-
-% \begin{frame}[fragile] % Need to use the fragile option when verbatim is used in the slide
-%     \frametitle{Citation}
-%     An example of the \verb|\cite| command to cite within the presentation:\\~
-
-%     This statement requires citation \cite{p1}.
-% \end{frame}
-
+\begin{frame}{Intuition Behind GCN}
+    \begin{itemize}
+        \item \textbf{Normalization}: \(\tilde{D}^{-\frac{1}{2}} \tilde{A} \tilde{D}^{-\frac{1}{2}}\) ensures normalized aggregation.
+        \item \textbf{Feature Propagation}: Each node aggregates features from its neighbors.
+        \item \textbf{Nonlinearity}: Activation function introduces nonlinearity.
+    \end{itemize}
+\end{frame}
 %------------------------------------------------
 
-% \begin{frame}{References}
-%     \footnotesize
-%     \bibliography{reference.bib}
-%     \bibliographystyle{apalike}
-% \end{frame}
 
 
 
