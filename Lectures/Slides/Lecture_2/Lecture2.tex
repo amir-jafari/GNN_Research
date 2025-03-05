@@ -221,6 +221,41 @@ emphstyle={\color{self}\slshape},
 \lstinputlisting[firstline=86, lastline=95]{Python_Files/Lecture2_Code.py}
 \end{frame}
 
+
+\section{Node Classification using Cora dataset}
+%---------------------------------------------
+\begin{frame}
+\frametitle{The Cora Dataset}
+
+\begin{itemize}
+    \item The \textbf{Cora dataset} is a well-known citation network dataset used for graph-based machine learning tasks.
+    \item It consists of a collection of scientific publications in computer science, with citation links between papers.
+    \item \textbf{Key features of the dataset}:
+    \begin{itemize}
+        \item 2,708 scientific publications (nodes).
+        \item 5,429 citation links (edges).
+        \item Each paper is represented by a feature vector with 1,433 binary attributes.
+        \item 7 classes representing different research topics in computer science (e.g., neural networks, machine learning).
+    \end{itemize}
+\end{itemize}
+
+\end{frame}
+
+
+
+%---------------------------------------------
+\begin{frame}
+\frametitle{Node Classification Problem}
+
+\begin{itemize}
+    \item In the Cora dataset, each publication is a node in the graph, and the citation between papers is represented as an edge.
+    \item The \textbf{node classification} task involves predicting the class of each node (paper) based on its feature vector and graph structure.
+    \item \textbf{Goal}: Predict the topic (7 classes) of each publication using the node features and citation network.
+\end{itemize}
+
+\end{frame}
+%---------------------------------------------
+
 \section{Conclusion}
 %---------------------------------------------
 \begin{frame}{Conclusion}

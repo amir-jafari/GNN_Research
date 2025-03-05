@@ -12,6 +12,7 @@
 \usepackage[normalem]{ulem}
 \usepackage{textpos}
 \usepackage{tcolorbox}
+\usepackage{booktabs} 
 %**********************************************************************************************************************************************
 \useunder{\uline}{\ulined}{}%
 \DeclareUrlCommand{\bulurl}{\def\UrlFont{\ttfamily\color{blue}\ulined}}
@@ -356,6 +357,48 @@
         \end{itemize}
     \end{columns}
 \end{frame}
+
+
+%------------------------------------------------
+\section{Case Example: Node Classification}
+%------------------------------------------------
+\begin{frame}{Gender Classification}
+\textbf{Classifying Male and Female Using a GNN}
+	\begin{itemize}
+        		\item Nodes represent individuals.
+       		\item Edges represent relationships (e.g., friendships, interactions).
+     		\item Features can include age, height, eyes color etc.
+   	\end{itemize}
+\end{frame}
+%------------------------------------------------
+\begin{frame}{Dummy Data}
+    \centering
+    \renewcommand{\arraystretch}{1.2}
+    \begin{tabular}{cccc}  % Four columns defined
+        \toprule
+        \textbf{Person (Node)} & \textbf{Age} & \textbf{Height (cm)} & \textbf{Gender (Label)} \\
+        \midrule
+        0 & 25 & 180 & Male (1) \\
+        1 & 23 & 165 & Female (0) \\
+        2 & 30 & 175 & Male (1) \\
+        3 & 28 & 160 & Female (0) \\
+        4 & 22 & 170 & Male(1) \\
+        \bottomrule
+    \end{tabular}
+\end{frame}
+%------------------------------------------------
+
+
+%------------------------------------------------
+\begin{frame}{Dummy Data visualization}
+\includegraphics[width=0.8\linewidth]{gender.png}
+\end{frame}
+
+%------------------------------------------------
+
+
+
+
 
 %------------------------------------------------
 \section{Summary}
