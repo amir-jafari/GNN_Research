@@ -7,11 +7,16 @@ This guide will help you contribute changes using **pull requests**, perform a *
 ## Step 1: Create a Pull Request (PR)
 
 1. Make sure your feature branch is **pushed to GitHub**
+
+![1.png](figs/branch_creation.png)
+
 2. Navigate to the **main repository page**
 3. GitHub will often show a banner:
 
    > “Compare & pull request” — Click it  
    > (Or click **"Pull requests" > "New pull request"** manually)
+
+![1.png](figs/ask_pr.png)
 
 4. Make sure:
    - `base:` is `main`
@@ -20,6 +25,8 @@ This guide will help you contribute changes using **pull requests**, perform a *
 
    - **Title** — short and descriptive (e.g., `feat: add login page`)
    - **Description** — explain what and why you changed
+
+![1.png](figs/open_pr.png)
 
 6. Click **"Create pull request"**
 
@@ -62,6 +69,8 @@ Once the PR is approved and all checks pass:
 3. Confirm with a **meaningful commit message**
 4. Click **“Confirm merge”**
 
+![1.png](figs/merge_pr.png)
+
 ✅ You’ve successfully merged your changes into `main`!
 
 ---
@@ -71,6 +80,28 @@ Once the PR is approved and all checks pass:
 - After merging, GitHub will prompt you to **delete the branch**
 - Click **"Delete branch"**
 
+![1.png](figs/delet_branch.png)
+
 > 🎉 Done! You can now start your next task by creating a new branch from `main`.
 
 ---
+
+&nbsp;
+
+&nbsp;
+
+&nbsp;
+
+&nbsp;
+
+&nbsp;
+
+&nbsp;
+
+> 💡 **Pro Tip: Merge Options in GitHub Pull Requests**
+
+| Merge Type                | Description                                                                    | When to Use It                                                          |
+| ------------------------- | ------------------------------------------------------------------------------ | ----------------------------------------------------------------------- |
+| **Squash and Merge**      | Combines all commits in the PR into **one clean commit**                       | Preferred when you want a tidy history and easy-to-read commit logs     |
+| **Create a Merge Commit** | Merges the branch with a separate commit showing the merge action              | Use if you want to preserve **full commit history and branching**       |
+| **Rebase and Merge**      | Rewrites commit history so it appears as if changes were made directly on base | Useful for advanced users who want linear history without merge commits |
